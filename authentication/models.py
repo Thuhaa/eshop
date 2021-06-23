@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 
@@ -24,6 +24,7 @@ class CustomUserManager(BaseUserManager):
 			last_name=last_name,
 			password=password)
 		user.set_password(password)
+		user.is_active = True
 		# save the user to the default database
 		user.save(using=self._db)
 		return user
