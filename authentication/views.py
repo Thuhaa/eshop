@@ -10,10 +10,11 @@ def register_user(request):
     '''
 	Register Users Function. To be expanded later with the addition of AJAX and others
 	'''
+
+
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
@@ -29,12 +30,16 @@ def register_user(request):
     return render(request, 'authentication/register.html', context)
 
 
-# TODO: BUG!!! Users registered using the clients' register form cannot log in again.
+# TODO: BUG!!! Users registered using the htmls' register form cannot log in again.
 # TODO: SUGGESTED SOLUTION TO WORK WITH THIS!!: Create a UserCreationForm and a UserChageForm
+# TODO: Notice!!! The bug was solved using the SUGGESTED SOLUTION
+
+
 def login_user(request):
     '''
-	Login users
+	Login users method
 	'''
+
     if request.method == "POST":
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -51,6 +56,9 @@ def login_user(request):
     return render(request, 'authentication/login.html')
 
 
-def index_page(request):
-    return render(request, 'authentication/index.html')
-# Create your views here.
+def reset_password(request):
+    return HttpResponse("Reset Password")
+
+
+def logout_user(request):
+    return HttpResponse("Logout Page")
