@@ -3,7 +3,7 @@ from .models import Product, FeaturedProduct
 
 class ProductAdmin(admin.ModelAdmin):
 	list_display = [
-	'unique_id', 'product_name', 
+	'unique_sku', 'product_name', 
 	'product_category', 'price' ,
 	'percentage_discount', 'tag', 
 	'date_posted', 'in_stock'
