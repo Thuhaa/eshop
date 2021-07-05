@@ -1,6 +1,8 @@
 from django.db import models
 import datetime
-from django.utils.crypto import get_random_string
+from django.utils.crypto import get_random_string #--Decided not to use this because of a bug that makes it return the same string as before
+import time
+
 PRODUCT_CATEGORIES = (
 	('Men','Men'), ('Women', 'Women'),
 	('Kids','Kids'),('Accesories','Accesories'), 
@@ -15,7 +17,7 @@ TAG_CHOICES = (
 # Once this model is created, run migrations to create a table for it in the database
 class Product(models.Model):
 	'''The Generic Produc Model'''
-	unique_id = models.CharField(max_length=50, default=get_random_string(15), unique=True)
+	unique_sku = models.CharField(max_length=50, unique=True)
 	product_name = models.CharField(max_length=200)
 	product_image = models.ImageField(upload_to='product_images/') # Needs to install Pillow, must be an absolute path. Not a relative path
 	product_category = models.CharField(max_length=50, choices=PRODUCT_CATEGORIES)
