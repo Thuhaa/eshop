@@ -239,7 +239,8 @@
 	<!-- This is where the featured product will go -->
 	<section class="hero-slider">
 		<!-- Single Slider -->
-		<div class="single-slider">
+		{% for product in featured_products %}
+		<div class="single-slider" style="background-image: url('{{ product.banner_image.url }}');">
 			<div class="container">
 				<div class="row no-gutters">
 					<div class="col-lg-9 offset-lg-3 col-12">
@@ -247,8 +248,8 @@
 							<div class="row">
 								<div class="col-lg-7 col-12">
 									<div class="hero-text">
-										<h1><span>UP TO 50% OFF </span>Shirt For Man</h1>
-										<p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>
+										<h1><span>{{ product.special_text }}</span>{{ product.title_text }}</h1>
+										<p>{{ product.explanation_text }}</p>
 										<div class="button">
 											<a href="#" class="btn">Shop Now!</a>
 										</div>
@@ -260,6 +261,7 @@
 				</div>
 			</div>
 		</div>
+		{% endfor %}
 		<!--/ End Single Slider -->
 	</section>
 	<!--/ End Slider Area -->
@@ -307,14 +309,14 @@
 																<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 															</div>
 															<div class="product-action-2">
-																<a title="Add to cart" href="#">Add to cart</a>
+																<a title="Add to cart" href="{% url 'add-to-cart' product.id %}">Add to cart</a>
 															</div>
 														</div>
 													</div>
 													<div class="product-content">
 														<h3><a href="product-details.html">Women Hot Collection</a></h3>
 														<div class="product-price">
-															<span>$29.00</span>
+															<span>{{ product.price }}</span>
 														</div>
 													</div>
 												</div>
@@ -333,8 +335,8 @@
 												<div class="single-product">
 													<div class="product-img">
 														<a href="product-details.html">
-															<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-															<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+															<img class="default-img" src="{{ product.product_image.url }}" alt="#">
+															<img class="hover-img" src="{{ product.product_image.url }}" alt="#">
 														</a>
 														<div class="button-head">
 															<div class="product-action">
@@ -343,14 +345,14 @@
 																<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 															</div>
 															<div class="product-action-2">
-																<a title="Add to cart" href="#">Add to cart</a>
+																<a title="Add to cart" href="{% url 'add-to-cart' product.id %}">Add to cart</a>
 															</div>
 														</div>
 													</div>
 													<div class="product-content">
 														<h3><a href="product-details.html">Women Hot Collection</a></h3>
 														<div class="product-price">
-															<span>$29.00</span>
+															<span>{{ product.price }}</span>
 														</div>
 													</div>
 												</div>
@@ -358,6 +360,7 @@
 											{% endfor %}
 									</div>
 								</div>
+							</div>
 								<!--/ End Single Tab -->
 								<!-- Start Single Tab -->
 								<div class="tab-pane fade" id="kids" role="tabpanel">
@@ -368,8 +371,8 @@
 												<div class="single-product">
 													<div class="product-img">
 														<a href="product-details.html">
-															<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-															<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+															<img class="default-img" src="{{ product.product_image.url }}" alt="#">
+															<img class="hover-img" src="{{ product.product_image.url }}" alt="#">
 														</a>
 														<div class="button-head">
 															<div class="product-action">
@@ -378,14 +381,14 @@
 																<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 															</div>
 															<div class="product-action-2">
-																<a title="Add to cart" href="#">Add to cart</a>
+																<a title="Add to cart" href="{% url 'add-to-cart' product.id %}">Add to cart</a>
 															</div>
 														</div>
 													</div>
 													<div class="product-content">
 														<h3><a href="product-details.html">Women Hot Collection</a></h3>
 														<div class="product-price">
-															<span>$29.00</span>
+															<span>{{ product.price }}</span>
 														</div>
 													</div>
 												</div>
@@ -404,8 +407,8 @@
 												<div class="single-product">
 													<div class="product-img">
 														<a href="product-details.html">
-															<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-															<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+															<img class="default-img" src="{{ product.product_image.url }}" alt="#">
+															<img class="hover-img" src="{{ product.product_image.url }}" alt="#">
 														</a>
 														<div class="button-head">
 															<div class="product-action">
@@ -414,14 +417,14 @@
 																<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 															</div>
 															<div class="product-action-2">
-																<a title="Add to cart" href="#">Add to cart</a>
+																<a title="Add to cart" href="{% url 'add-to-cart' product.id %}">Add to cart</a>
 															</div>
 														</div>
 													</div>
 													<div class="product-content">
 														<h3><a href="product-details.html">Women Hot Collection</a></h3>
 														<div class="product-price">
-															<span>$29.00</span>
+															<span>{{ product.price }}</span>
 														</div>
 													</div>
 												</div>
@@ -452,11 +455,12 @@
                 <div class="col-12">
                     <div class="owl-carousel popular-slider">
 						<!-- Start Single Product -->
+						{% for product in hot_items %}
 						<div class="single-product">
 							<div class="product-img">
 								<a href="product-details.html">
-									<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-									<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+									<img class="default-img" src="{{ product.product_image.url }}" alt="#">
+									<img class="hover-img" src="{{ product.product_image.url }}" alt="#">
 									<span class="out-of-stock">Hot</span>
 								</a>
 								<div class="button-head">
@@ -466,97 +470,19 @@
 										<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 									</div>
 									<div class="product-action-2">
-										<a title="Add to cart" href="#">Add to cart</a>
+										<a title="Add to cart" href="{% url 'add-to-cart' product.id %}">Add to cart</a>
 									</div>
 								</div>
 							</div>
 							<div class="product-content">
-								<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+								<h3><a href="product-details.html">{{ product.product_name }}</a></h3>
 								<div class="product-price">
-									<span class="old">$60.00</span>
-									<span>$50.00</span>
+									<span class="old">{{ product.price }}</span>
+									<span>{{ product.price }}</span>
 								</div>
 							</div>
 						</div>
-						<!-- End Single Product -->
-						<!-- Start Single Product -->
-						<div class="single-product">
-                            <div class="product-img">
-                                <a href="product-details.html">
-                                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-                                </a>
-								<div class="button-head">
-									<div class="product-action">
-										<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-										<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-									</div>
-									<div class="product-action-2">
-										<a title="Add to cart" href="#">Add to cart</a>
-									</div>
-								</div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Women Hot Collection</a></h3>
-                                <div class="product-price">
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                        </div>
-						<!-- End Single Product -->
-						<!-- Start Single Product -->
-						<div class="single-product">
-                            <div class="product-img">
-                                <a href="product-details.html">
-                                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-									<span class="new">New</span>
-                                </a>
-								<div class="button-head">
-									<div class="product-action">
-										<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-										<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-									</div>
-									<div class="product-action-2">
-										<a title="Add to cart" href="#">Add to cart</a>
-									</div>
-								</div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Awesome Pink Show</a></h3>
-                                <div class="product-price">
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                        </div>
-						<!-- End Single Product -->
-						<!-- Start Single Product -->
-						<div class="single-product">
-                            <div class="product-img">
-                                <a href="product-details.html">
-                                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-                                </a>
-								<div class="button-head">
-									<div class="product-action">
-										<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-										<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-									</div>
-									<div class="product-action-2">
-										<a title="Add to cart" href="#">Add to cart</a>
-									</div>
-								</div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Awesome Bags Collection</a></h3>
-                                <div class="product-price">
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                        </div>
+						{% endfor %}
 						<!-- End Single Product -->
                     </div>
                 </div>
@@ -564,58 +490,6 @@
         </div>
     </div>
 	<!-- End Most Popular Area -->
-	
-	<!-- Start Shop Blog  -->
-	<section class="shop-blog section">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-title">
-						<h2>From Our Blog</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Blog  -->
-					<div class="shop-single-blog">
-						<img src="https://via.placeholder.com/370x300" alt="#">
-						<div class="content">
-							<p class="date">22 July , 2020. Monday</p>
-							<a href="#" class="title">Sed adipiscing ornare.</a>
-							<a href="#" class="more-btn">Continue Reading</a>
-						</div>
-					</div>
-					<!-- End Single Blog  -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Blog  -->
-					<div class="shop-single-blog">
-						<img src="https://via.placeholder.com/370x300" alt="#">
-						<div class="content">
-							<p class="date">22 July, 2020. Monday</p>
-							<a href="#" class="title">Man’s Fashion Winter Sale</a>
-							<a href="#" class="more-btn">Continue Reading</a>
-						</div>
-					</div>
-					<!-- End Single Blog  -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<!-- Start Single Blog  -->
-					<div class="shop-single-blog">
-						<img src="https://via.placeholder.com/370x300" alt="#">
-						<div class="content">
-							<p class="date">22 July, 2020. Monday</p>
-							<a href="#" class="title">Women Fashion Festive</a>
-							<a href="#" class="more-btn">Continue Reading</a>
-						</div>
-					</div>
-					<!-- End Single Blog  -->
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Shop Blog  -->
 	
 	<!-- Start Shop Services Area -->
 	<section class="shop-services section home">
@@ -777,7 +651,6 @@
 		</div>
 	</footer>
 	<!-- /End Footer Area -->
- 
 	<!-- Jquery -->
     <script src="{% static 'authentication/js/jquery.min.js' %}"></script>
     <script src="{% static 'authentication/js/jquery-migrate-3.0.0.js' %}"></script>
