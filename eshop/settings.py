@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication.apps.AuthenticationConfig',
     'shop.apps.ShopConfig',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +78,12 @@ WSGI_APPLICATION = 'eshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'eshop',
+        'USER':'postgres',
+        'HOST':'localhost',
+        'PORT':5432,
+        'PASSWORD':'mezenga'
     }
 }
 
@@ -113,6 +118,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+CART_SESSION_ID = 'cart'
 
 
 # Static files (CSS, JavaScript, Images)

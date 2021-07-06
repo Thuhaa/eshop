@@ -1214,7 +1214,8 @@ Version:1.0
 }
 .hero-slider .single-slider {
 	height: auto;
-	background-image: url('https://via.placeholder.com/1900x700');
+	/* featured image banner image */
+	/*background-image: url('');*/
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
