@@ -25,7 +25,7 @@ SECRET_KEY = os.environ['SECRET_KEY_ESHOP']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eshopkenya.herokuapp.com', 'localhost']
 
 
 # Application definition
